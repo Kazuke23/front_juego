@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Register() {
   return (
     <div className="register-container">
-      <h2>Registro</h2>
+      <h2 className="login-title">Registro</h2>
       <form className="register-form">
         <div className="form-group">
           <label>Nombre:</label>

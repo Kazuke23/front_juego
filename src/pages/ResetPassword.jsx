@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function ResetPassword() {
   return (
     <div>
-      <h2>Restablecer Contraseña</h2>
+      <h2 className="login-title">Restablecer Contraseña</h2>
       <form>
         <div>
           <label>Correo Electrónico:</label>

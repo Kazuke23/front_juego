@@ -5,7 +5,7 @@ import './styles/App.css'; // Importa el archivo de estilos específico
 function Login() {
   return (
     <div className="login-container">
-      <h2>Iniciar Sesión</h2>
+      <h2 className="login-title">Iniciar Sesión</h2>
       <form className="login-form">
         <div className="form-group">
           <label>Correo Electrónico:</label>
