@@ -10,9 +10,10 @@ function AdminLogin() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Lógica para manejar el inicio de sesión del administrador
-    if (email === 'admin@example.com' && password === 'adminpassword') {
+    if (email === 'admin@example.com' && password === 'anpadmissword') {
       navigate('/admin/dashboard'); // Navega a la página de administración al iniciar sesión correctamente
     } else {
+      console.log('Correo o contraseña incorrectos'); // Para depurar
       alert('Correo o contraseña incorrectos');
     }
   };

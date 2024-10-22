@@ -1,0 +1,30 @@
+.dashboard-container {
+    padding: 20px;
+    width: 100%; /* Asegúrate de que el contenedor de dashboard ocupe todo el ancho */
+  }
+  
+  .table-container {
+    width: 100%; /* Asegúrate de que el contenedor de la tabla ocupe todo el ancho */
+    max-width: 100%; /* Sin límite de ancho máximo */
+    overflow-y: auto; /* Habilitar desplazamiento vertical */
+  }
+  
+  table {
+    width: 100%; /* Hacer que la tabla ocupe el 100% del contenedor */
+    border-collapse: collapse; /* Colapsar bordes */
+  }
+  
+  th, td {
+    border: 1px solid #ddd; /* Bordes para celdas */
+    padding: 8px; /* Espaciado interno */
+    text-align: left; /* Alinear texto a la izquierda */
+  }
+  
+  th {
+    background-color: #f2f2f2; /* Color de fondo para encabezados */
+  }
+  
+  tbody tr:hover {
+    background-color: #f5f5f5; /* Color de fondo al pasar el mouse */
+  }
+  

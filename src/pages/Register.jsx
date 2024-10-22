@@ -1,4 +1,4 @@
-import './styles/App.css'; // Estilos específicos para la página de registro
+import './styles/App2.css'; // Estilos específicos para la página de registro
 import { Link } from 'react-router-dom';
 
 function Register() {

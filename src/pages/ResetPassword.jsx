@@ -6,11 +6,11 @@ function ResetPassword() {
     <div>
       <h2 className="login-title">Restablecer Contraseña</h2>
       <form>
-        <div>
+        <div className="form-group">
           <label>Correo Electrónico:</label>
           <input type="email" name="email" required />
         </div>
-        <div>
+        <div className="form-group">
           <label>Nueva Contraseña:</label>
           <input type="password" name="password" required />
         </div>

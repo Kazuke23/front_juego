@@ -1,0 +1,105 @@
+/* src/pages/styles/App.css */
+
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #e1e3f2, #f7f7f7);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Estilos del contenedor principal */
+  .register-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 50px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+  }
+  
+  .container:hover {
+    transform: translateY(-5px);
+  }
+  
+  h2.login-title {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    font-size: 24px;
+  }
+  
+  /* Estilos para el formulario */
+  form {
+    width: 100%;
+  }
+  
+  div.form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Estilos para las etiquetas */
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+  }
+  
+  /* Estilos uniformes para todos los campos de entrada */
+  input {
+    width: 100%;
+    padding: 12px; /* Tamaño uniforme */
+    font-size: 16px; /* Tamaño de fuente uniforme */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border 0.3s;
+  }
+  
+  /* Colores y bordes consistentes al enfocar */
+  input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Botón con tamaño y estilos consistentes */
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+  
+  p {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
