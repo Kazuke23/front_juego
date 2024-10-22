@@ -1,14 +1,15 @@
 /* src/pages/styles/App.css */
 
 body {
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #e1e3f2, #f7f7f7);
   margin: 0;
   padding: 0;
-  height: 100vh;
+  height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la ventana */
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url('/assets/margarita.png'); /* Cambia la ruta según sea necesario */
+  background-size: cover; /* Cubre toda la pantalla */
+  background-position: center; /* Centra la imagen */
 }
 
 .container {
@@ -19,7 +20,7 @@ body {
   width: 100%;
   max-width: 400px; /* Ancho máximo para el formulario */
   padding: 20px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad para leer mejor */
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s;
@@ -29,7 +30,7 @@ body {
   transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
 }
 
-h2.login-title{
+h2.login-title {
   margin-bottom: 20px;
   color: #333;
   text-align: center;
@@ -51,14 +52,14 @@ label {
 }
 
 input {
-    width: 100%;
-    padding: 12px; /* Tamaño uniforme */
-    font-size: 16px; /* Tamaño de fuente uniforme */
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: border 0.3s;
-  }
+  width: 100%;
+  padding: 12px; /* Tamaño uniforme */
+  font-size: 16px; /* Tamaño de fuente uniforme */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: border 0.3s;
+}
 
 input:focus {
   border-color: #007bff;
@@ -95,4 +96,3 @@ a {
 a:hover {
   text-decoration: underline;
 }
-
