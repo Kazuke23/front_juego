@@ -7,12 +7,37 @@ function AdminRegister() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Lógica para manejar el registro del administrador (puedes conectar aquí a tu API o base de datos)
-    console.log('Nuevo administrador registrado:', email);
-    // Redirigir al dashboard del admin después del registro
-    navigate('/admin/dashboard');
+  // Función para manejar el envío del formulario
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevenir el envío por defecto del formulario
+
+    // Crear el objeto de datos para enviar a la API
+    const adminData = {
+      email,
+      password,
+    };
+
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/admin/register', { // Asegúrate de que la ruta sea correcta
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(adminData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert('Registro de administrador exitoso');
+        // Redirigir al AdminLogin después del registro exitoso
+        navigate('/admin'); // Cambiar aquí para redirigir a la página de inicio de sesión
+      } else {
+        alert(`Error: ${data.message}`);
+      }
+    } catch (error) {
+      console.error('Error al registrar el administrador:', error);
+    }
   };
 
   return (
@@ -42,7 +67,7 @@ function AdminRegister() {
         </button>
       </form>
       
-      <p>¿Ya tienes una cuenta? <Link to="/admin">Inicia Sesión</Link></p> {/* Link a la página de inicio de sesión del admin */}
+      <p>¿Ya tienes una cuenta? <Link to="/admin">Inicia Sesión</Link></p>
     </div>
   );
 }

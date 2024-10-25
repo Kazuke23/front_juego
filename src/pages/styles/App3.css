@@ -1,0 +1,136 @@
+/* App3.css - Estilos específicos para la página de restablecimiento de contraseña */
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4; /* Fondo claro */
+  }
+  
+  .reset-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 350px; /* Reducción del ancho máximo del contenedor */
+    padding: 20px; /* Reducción del padding del contenedor */
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .reset-title {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  form {
+    width: 100%;
+  }
+  
+  .reset-form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px; /* Reducción del padding de los campos de entrada */
+    font-size: 14px; /* Reducción del tamaño de la fuente */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border 0.3s ease;
+  }
+  
+  input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .reset-button {
+    width: 100%;
+    padding: 10px; /* Reducción del padding del botón */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px; /* Reducción del tamaño de la fuente del botón */
+    transition: background-color 0.3s ease, transform 0.2s;
+  }
+  
+  .reset-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+  
+  .reset-link {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .reset-link a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .reset-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Estilos responsivos para pantallas más pequeñas (tablets y móviles) */
+  @media (max-width: 768px) {
+    .reset-container {
+      max-width: 90%;
+      padding: 15px; /* Reducción del padding en dispositivos más pequeños */
+    }
+  
+    .reset-title {
+      font-size: 22px;
+    }
+  
+    input {
+      font-size: 14px;
+      padding: 8px; /* Reducción del padding en dispositivos más pequeños */
+    }
+  
+    .reset-button {
+      font-size: 14px;
+      padding: 8px; /* Reducción del padding en dispositivos más pequeños */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .reset-container {
+      max-width: 95%;
+      padding: 10px; /* Reducción del padding en dispositivos muy pequeños */
+    }
+  
+    .reset-title {
+      font-size: 20px;
+    }
+  
+    input {
+      font-size: 13px;
+      padding: 6px; /* Reducción del padding en dispositivos muy pequeños */
+    }
+  
+    .reset-button {
+      font-size: 14px;
+      padding: 6px; /* Reducción del padding en dispositivos muy pequeños */
+    }
+  }
+  

@@ -1,29 +1,42 @@
-// src/pages/Login.jsx
 import { Link, useNavigate } from 'react-router-dom';
 import './styles/App.css'; // Importa el archivo de estilos específico
 
 function Login() {
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // Prevenir el envío del formulario por defecto
 
     // Obtiene los valores de los campos de entrada
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    // Usuario de prueba
-    const testUser = {
-      email: 'testuser@example.com',
-      password: 'user123', // Cambia esta contraseña según sea necesario
-    };
+    try {
+      // Realizar la solicitud de inicio de sesión al backend
+      const response = await fetch('http://localhost:5000/api/user/login', { // Cambia esto a la URL de tu API
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    // Verifica si las credenciales son correctas
-    if (email === testUser.email && password === testUser.password) {
-      // Si la autenticación es exitosa, redirigir al UserDashboard
-      navigate('/user-dashboard');
-    } else {
-      alert('Credenciales incorrectas. Inténtalo de nuevo.'); // Alerta en caso de error
+      const data = await response.json();
+
+      if (response.ok) {
+        // Si la autenticación es exitosa, redirigir al UserDashboard
+        navigate('/user-dashboard');
+      } else {
+        // Alerta en caso de error (credenciales incorrectas o acceso denegado)
+        if (data.message) {
+          alert(data.message); // Mostrar mensaje del backend
+        } else {
+          alert('Credenciales incorrectas. Inténtalo de nuevo.');
+        }
+      }
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+      alert('Error al iniciar sesión. Inténtalo de nuevo más tarde.');
     }
   };
 

@@ -20,7 +20,7 @@ body {
   width: 100%;
   max-width: 400px; /* Ancho máximo para el formulario */
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad para leer mejor */
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad para mejor lectura */
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s;
@@ -95,4 +95,52 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+/* Estilos responsivos para tablets */
+@media (max-width: 768px) {
+  .container {
+    max-width: 350px;
+    padding: 15px;
+  }
+
+  h2.login-title {
+    font-size: 22px;
+  }
+
+  input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  button {
+    font-size: 15px;
+    padding: 9px;
+  }
+}
+
+/* Estilos responsivos para móviles */
+@media (max-width: 480px) {
+  .container {
+    max-width: 90%;
+    padding: 10px;
+  }
+
+  h2.login-title {
+    font-size: 20px;
+  }
+
+  input {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  p {
+    font-size: 14px;
+  }
 }

@@ -1,25 +1,74 @@
-// src/pages/UserDashboard.jsx
 import { useNavigate } from 'react-router-dom';
-import './styles/UserDashboard.css'; // Importa el archivo de estilos específico
-import { useState } from 'react';
+import './styles/UserDashboard.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function UserDashboard() {
   const navigate = useNavigate();
   const [codigo, setCodigo] = useState('');
-  const [registros, setRegistros] = useState([]);
+  const [registros, setRegistros] = useState(() => {
+    const savedRecords = localStorage.getItem('registros');
+    return savedRecords ? JSON.parse(savedRecords) : [];
+  });
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    localStorage.setItem('registros', JSON.stringify(registros));
+  }, [registros]);
+
+  // Función modificada para guardar el intento con la ruta correcta
+  const guardarIntento = async (codigo, premio) => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/intento/intento', {
+        fechaHora: new Date().toISOString(),
+        codigo: codigo,
+        premio: premio
+      });
+
+      if (!response.data.success) {
+        throw new Error(response.data.message);
+      }
+
+      return response.data;
+    } catch (error) {
+      console.error('Error al guardar el intento:', error.response?.data || error.message);
+      throw error;
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (codigo.length === 3 && /^\d{3}$/.test(codigo)) {
-      const nuevoRegistro = {
-        fechaHora: new Date().toLocaleString(),
-        codigo: codigo,
-        premio: 'Premio ' + (registros.length + 1), // Simulación de premio
-      };
+      try {
+        const response = await axios.get(`http://localhost:5000/api/codigo/${codigo}`);
+        let premio = 'No ganaste';
+        
+        if (response.data.success) {
+          premio = response.data.premio;
+        }
 
-      setRegistros([...registros, nuevoRegistro]);
-      setCodigo(''); // Limpiar el campo de código
+        // Intentamos guardar el intento
+        await guardarIntento(codigo, premio);
+
+        // Solo actualizamos el estado local si el guardado fue exitoso
+        const nuevoRegistro = {
+          fechaHora: new Date().toLocaleString(),
+          codigo: codigo,
+          premio: premio,
+        };
+
+        setRegistros(prevRegistros => [...prevRegistros, nuevoRegistro]);
+        setCodigo('');
+
+      } catch (error) {
+        console.error('Error:', error);
+        // Mostramos un mensaje más específico según el tipo de error
+        if (error.response) {
+          alert(`Error: ${error.response.data.message || 'Error al procesar la solicitud'}`);
+        } else {
+          alert('Error de conexión con el servidor');
+        }
+      }
     } else {
       alert('Por favor, ingresa un código de 3 dígitos.');
     }
@@ -27,7 +76,7 @@ function UserDashboard() {
 
   return (
     <div className="dashboard-container">
-      <h1>Registro Código</h1>
+      <h1>Registro de Código</h1>
       <form onSubmit={handleSubmit} className="form-inline">
         <input
           type="text"
@@ -35,11 +84,13 @@ function UserDashboard() {
           onChange={(e) => setCodigo(e.target.value)}
           placeholder="Ingrese código (000 - 999)"
           maxLength="3"
+          pattern="\d{3}"
           required
         />
         <button type="submit">Registrar</button>
         <button type="button" onClick={() => navigate('/')}>Salir</button>
       </form>
+
       <div className="table-container">
         <table>
           <thead>
