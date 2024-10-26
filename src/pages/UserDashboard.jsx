@@ -15,6 +15,12 @@ function UserDashboard() {
     localStorage.setItem('registros', JSON.stringify(registros));
   }, [registros]);
 
+  // Función para reiniciar los registros
+  const handleRefresh = () => {
+    setRegistros([]);
+    localStorage.removeItem('registros'); // Eliminar registros del localStorage
+  };
+
   // Función modificada para guardar el intento con la ruta correcta
   const guardarIntento = async (codigo, premio) => {
     try {
@@ -37,29 +43,36 @@ function UserDashboard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    // Verifica si el código ya ha sido redimido
+    const codigoYaRedimido = registros.some(registro => registro.codigo === codigo);
+    if (codigoYaRedimido) {
+      alert('El código ya fue redimido.');
+      return; // Salir de la función para no registrar de nuevo
+    }
+  
     if (codigo.length === 3 && /^\d{3}$/.test(codigo)) {
       try {
         const response = await axios.get(`http://localhost:5000/api/codigo/${codigo}`);
         let premio = 'No ganaste';
-        
+  
         if (response.data.success) {
           premio = response.data.premio;
         }
-
+  
         // Intentamos guardar el intento
         await guardarIntento(codigo, premio);
-
+  
         // Solo actualizamos el estado local si el guardado fue exitoso
         const nuevoRegistro = {
           fechaHora: new Date().toLocaleString(),
           codigo: codigo,
           premio: premio,
         };
-
+  
         setRegistros(prevRegistros => [...prevRegistros, nuevoRegistro]);
         setCodigo('');
-
+  
       } catch (error) {
         console.error('Error:', error);
         // Mostramos un mensaje más específico según el tipo de error
@@ -89,6 +102,7 @@ function UserDashboard() {
         />
         <button type="submit">Registrar</button>
         <button type="button" onClick={() => navigate('/')}>Salir</button>
+        <button type="button" onClick={handleRefresh}>Refrescar</button> {/* Botón de refrescar */}
       </form>
 
       <div className="table-container">

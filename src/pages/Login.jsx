@@ -13,7 +13,7 @@ function Login() {
 
     try {
       // Realizar la solicitud de inicio de sesión al backend
-      const response = await fetch('http://localhost:5000/api/user/login', { // Cambia esto a la URL de tu API
+      const response = await fetch('https://front-juego.vercel.app/api/user/login', { // Cambia esto a la URL de tu API
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
