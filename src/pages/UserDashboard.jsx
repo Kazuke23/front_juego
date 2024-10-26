@@ -18,7 +18,7 @@ function UserDashboard() {
   // Función modificada para guardar el intento con la ruta correcta
   const guardarIntento = async (codigo, premio) => {
     try {
-      const response = await axios.post('https://backend-juego.vercel.app/api/intento/intento', {
+      const response = await axios.post('http://localhost:5000/api/intento/intento', {
         fechaHora: new Date().toISOString(),
         codigo: codigo,
         premio: premio

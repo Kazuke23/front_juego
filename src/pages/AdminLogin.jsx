@@ -12,7 +12,7 @@ function AdminLogin() {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://backend-juego.vercel.app/api/user/admin/login', {
+      const response = await fetch('http://localhost:5000/api/user/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
