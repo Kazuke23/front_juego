@@ -1,63 +1,71 @@
-/* src/pages/styles/Ganadores.css */
-
-/* Contenedor del dashboard */
-.dashboard-container {
-  padding: 20px;
-  width: 100%; /* Asegúrate de que el contenedor ocupe todo el ancho */
-  height: 100vh; /* Ocupa toda la altura de la pantalla */
+.ganadores-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #f2f2f2; /* Fondo suave para mejor contraste */
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 15;
+}
+
+.table-container {
+  max-width: 800px; /* Controla el ancho de la tabla */
+  overflow-y: auto;
+  max-height: 60vh; /* Ajusta la altura máxima de la tabla */
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.table-ganadores {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.table-ganadores th,
+.table-ganadores td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-ganadores th {
+  background-color: #f8f9fa;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.table-ganadores tr:hover {
   background-color: #f5f5f5;
 }
 
-/* Contenedor de la tabla */
-.table-container {
-  width: 100%; /* Asegúrate de que el contenedor de la tabla ocupe todo el ancho */
-  max-width: 100%; /* Sin límite de ancho máximo */
-  overflow-y: auto; /* Habilitar desplazamiento vertical si es necesario */
-}
-
-/* Tabla */
-table {
-  width: 100%; /* Hacer que la tabla ocupe el 100% del contenedor */
-  border-collapse: collapse; /* Colapsar bordes */
-  table-layout: fixed; /* Asegurar que las columnas tengan el mismo ancho */
-}
-
-/* Celdas (th y td) */
-th, td {
-  border: 1px solid #ddd; /* Bordes para las celdas */
-  padding: 8px; /* Espaciado interno */
-  text-align: left; /* Alinear texto a la izquierda */
-  word-wrap: break-word; /* Permitir que el texto se ajuste en caso de ser largo */
-}
-
-/* Encabezados */
-th {
-  background-color: #f2f2f2; /* Color de fondo para encabezados */
-  font-weight: bold;
-}
-
-/* Filas del cuerpo al pasar el ratón */
-tbody tr:hover {
-  background-color: #f5f5f5; /* Color de fondo al pasar el mouse */
-}
-
-/* Botón de Salir */
 .btn-salir {
+  margin-top: 20px;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #dc3545;
   color: white;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 4px;
   cursor: pointer;
-  margin-top: 20px;
+  width: fit-content;
 }
 
 .btn-salir:hover {
-  background-color: #0056b3;
+  background-color: #c82333;
 }
