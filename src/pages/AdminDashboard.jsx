@@ -13,7 +13,7 @@ function AdminDashboard() {
     const fetchGanadores = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/ganadores', {
+        const response = await axios.get('https://backend-juego.vercel.app/api/ganadores', {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
