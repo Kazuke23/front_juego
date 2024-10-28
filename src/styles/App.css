@@ -1,0 +1,16 @@
+/* src/styles/App.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+  
+    .promo-info ul li {
+      font-size: 1rem;
+    }
+  }
+  

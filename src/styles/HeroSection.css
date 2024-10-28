@@ -1,0 +1,32 @@
+/* src/styles/HeroSection.css */
+.promo-info {
+  padding: 2rem 1rem;
+  text-align: center;
+  background-color: #FFF26B;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0; /* Elimina el padding para un ajuste exacto */
+  background-image: url("../../public/assets/imagencentro.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw; /* Ocupa el 100% del ancho de la ventana */
+  height: 100vh; /* Ocupa el 100% del alto de la ventana */
+  overflow: hidden; /* Evita barras de desplazamiento */
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
