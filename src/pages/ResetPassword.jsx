@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import './styles/App3.css';
 
 function ResetPassword() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [correo, setCorreo] = useState(''); // Cambiado de email a correo
+  const [contraseña, setContraseña] = useState(''); // Cambiado de password a contraseña
   const [message, setMessage] = useState('');
 
   const handleSubmit = async (e) => {
@@ -15,7 +15,7 @@ function ResetPassword() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ correo, contraseña }), // Cambiado de email y password a correo y contraseña
       });
 
       const data = await response.json();
@@ -39,9 +39,9 @@ function ResetPassword() {
           <label>Correo Electrónico:</label>
           <input
             type="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="correo" // Cambiado de email a correo
+            value={correo} // Cambiado de email a correo
+            onChange={(e) => setCorreo(e.target.value)} // Cambiado de email a correo
             required
           />
         </div>
@@ -49,9 +49,9 @@ function ResetPassword() {
           <label>Nueva Contraseña:</label>
           <input
             type="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="contraseña" // Cambiado de password a contraseña
+            value={contraseña} // Cambiado de password a contraseña
+            onChange={(e) => setContraseña(e.target.value)} // Cambiado de password a contraseña
             required
           />
         </div>

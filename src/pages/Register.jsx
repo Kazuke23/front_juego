@@ -9,10 +9,10 @@ function Register() {
     name: '',
     dob: '',
     cedula: '',
-    email: '',
+    correo: '', // Cambiado de email a correo
     celular: '',
     ciudad: '',
-    password: '',
+    contraseña: '', // Cambiado de password a contraseña
   });
 
   // Función para manejar los cambios en los campos del formulario
@@ -67,7 +67,7 @@ function Register() {
         </div>
         <div className="form-group">
           <label>Correo Electrónico:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+          <input type="email" name="correo" value={formData.correo} onChange={handleChange} required /> {/* Cambiado de email a correo */}
         </div>
         <div className="form-group">
           <label>Celular:</label>
@@ -79,7 +79,7 @@ function Register() {
         </div>
         <div className="form-group">
           <label>Contraseña:</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+          <input type="password" name="contraseña" value={formData.contraseña} onChange={handleChange} required /> {/* Cambiado de password a contraseña */}
         </div>
         <button className="register-btn" type="submit">Registrarse</button>
       </form>

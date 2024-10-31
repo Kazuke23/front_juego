@@ -3,8 +3,8 @@ import { useState } from 'react';
 import './styles/AdminLogin.css'; // Estilos específicos para el login de administrador
 
 function AdminLogin() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [correo, setCorreo] = useState(''); // Cambiado de email a correo
+  const [contraseña, setContraseña] = useState(''); // Cambiado de password a contraseña
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ function AdminLogin() {
       const response = await fetch('http://localhost:5000/api/user/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ correo, contraseña }) // Cambiado de email y password a correo y contraseña
       });
 
       const data = await response.json();
@@ -41,8 +41,8 @@ function AdminLogin() {
           <label>Correo Electrónico:</label>
           <input
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={correo} // Cambiado de email a correo
+            onChange={(e) => setCorreo(e.target.value)} // Cambiado de email a correo
             required
           />
         </div>
@@ -50,8 +50,8 @@ function AdminLogin() {
           <label>Contraseña:</label>
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={contraseña} // Cambiado de password a contraseña
+            onChange={(e) => setContraseña(e.target.value)} // Cambiado de password a contraseña
             required
           />
         </div>

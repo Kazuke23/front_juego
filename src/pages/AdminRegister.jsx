@@ -3,8 +3,8 @@ import { useNavigate, Link } from 'react-router-dom'; // Importa Link para la na
 import './styles/AdminRegister.css'; // Estilos específicos para el registro de administrador
 
 function AdminRegister() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [correo, setCorreo] = useState(''); // Cambiado de email a correo
+  const [contraseña, setContraseña] = useState(''); // Cambiado de password a contraseña
   const navigate = useNavigate();
 
   // Función para manejar el envío del formulario
@@ -13,8 +13,8 @@ function AdminRegister() {
 
     // Crear el objeto de datos para enviar a la API
     const adminData = {
-      email,
-      password,
+      correo, // Cambiado de email a correo
+      contraseña, // Cambiado de password a contraseña
     };
 
     try {
@@ -48,8 +48,8 @@ function AdminRegister() {
           <label>Correo Electrónico:</label>
           <input
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={correo} // Cambiado de email a correo
+            onChange={(e) => setCorreo(e.target.value)} // Cambiado de email a correo
             required
           />
         </div>
@@ -57,8 +57,8 @@ function AdminRegister() {
           <label>Contraseña:</label>
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={contraseña} // Cambiado de password a contraseña
+            onChange={(e) => setContraseña(e.target.value)} // Cambiado de password a contraseña
             required
           />
         </div>

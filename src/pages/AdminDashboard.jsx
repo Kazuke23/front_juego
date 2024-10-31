@@ -1,102 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import './styles/AdminDashboard.css';
+// src/pages/Ganadores.jsx
+import React from 'react';
+import './styles/AdminDashboard.css'; // Importa tu archivo CSS para esta página
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 function AdminDashboard() {
-  const [ganadores, setGanadores] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchGanadores = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/ganadores', {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
-        });
-        
-        if (!response.data.success) {
-          throw new Error('Error al obtener los ganadores');
-        }
-        
-        setGanadores(response.data.ganadores);
-      } catch (err) {
-        console.error(err);
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-  
-    fetchGanadores();
-  }, []);
-  
+  // Función para manejar el botón "Salir"
   const handleSalir = () => {
-    navigate('/admin');
+    navigate('/admin'); // Redirige a la página principal o donde prefieras
   };
-
-  const formatearFecha = (fecha) => {
-    return new Date(fecha).toLocaleString('es-CO', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  };
-
-  if (isLoading) {
-    return (
-      <div className="ganadores-container">
-        <h1 className="title">Ganadores</h1>
-        <div className="text-center p-4">Cargando ganadores...</div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="ganadores-container">
-        <h1 className="title">Ganadores</h1>
-        <div className="text-center text-red-600 p-4">Error: {error}</div>
-      </div>
-    );
-  }
 
   return (
-    <div className="container">
+    <div className="ganadores-container">
       <h1 className="title">Ganadores</h1>
-      <div className="table-container1">
-        <table className="table-ganadores">
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Nombre</th>
-              <th>Cédula</th>
-              <th>Celular</th>
-              <th>Código</th>
-              <th>Premio</th>
-            </tr>
-          </thead>
-          <tbody>
-            {ganadores.map((ganador, index) => (
-              <tr key={index}>
-                <td>{formatearFecha(ganador.fecha)}</td>
-                <td>{ganador.nombre}</td>
-                <td>{ganador.cedula}</td>
-                <td>{ganador.celular}</td>
-                <td>{ganador.codigo}</td>
-                <td>{ganador.premio}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <table className="table-ganadores">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Nombre</th>
+            <th>Cédula</th>
+            <th>Código</th>
+            <th>Premio</th>
+          </tr>
+        </thead>
+        <tbody>
+          {/* Ejemplo de filas, puedes mapear datos dinámicos aquí */}
+          <tr>
+            <td>2024-10-20</td>
+            <td>Juan Pérez</td>
+            <td>123456789</td>
+            <td>AB123</td>
+            <td>$500</td>
+          </tr>
+          <tr>
+            <td>2024-10-21</td>
+            <td>Ana Gómez</td>
+            <td>987654321</td>
+            <td>CD456</td>
+            <td>$1000</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      {/* Botón de Salir */}
       <button className="btn-salir" onClick={handleSalir}>Salir</button>
     </div>
   );
