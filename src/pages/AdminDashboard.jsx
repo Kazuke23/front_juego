@@ -1,14 +1,40 @@
-// src/pages/Ganadores.jsx
-import React from 'react';
-import './styles/AdminDashboard.css'; // Importa tu archivo CSS para esta página
+// src/pages/AdminDashboard.jsx
+import React, { useEffect, useState } from 'react';
+import './styles/AdminDashboard.css';
 import { useNavigate } from 'react-router-dom';
 
 function AdminDashboard() {
   const navigate = useNavigate();
+  const [winners, setWinners] = useState([]);
 
-  // Función para manejar el botón "Salir"
+  // Cargar los datos de ganadores cuando el componente se monte
+  useEffect(() => {
+    const fetchWinners = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/intento/ganadores', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`, // Asegúrate de pasar el token de autenticación
+          },
+        });
+
+        // Agregar este log para ver la respuesta
+        const text = await response.text(); 
+        console.log('Respuesta del servidor:', text);
+
+        // Aquí intentamos convertir la respuesta a JSON
+        const data = JSON.parse(text); // Usamos JSON.parse aquí
+
+        setWinners(data);
+      } catch (error) {
+        console.error('Error al cargar los ganadores:', error);
+      }
+    };
+
+    fetchWinners();
+  }, []);
+
   const handleSalir = () => {
-    navigate('/admin'); // Redirige a la página principal o donde prefieras
+    navigate('/admin');
   };
 
   return (
@@ -20,30 +46,27 @@ function AdminDashboard() {
             <th>Fecha</th>
             <th>Nombre</th>
             <th>Cédula</th>
+            <th>Celular</th>
             <th>Código</th>
             <th>Premio</th>
+             
           </tr>
         </thead>
         <tbody>
-          {/* Ejemplo de filas, puedes mapear datos dinámicos aquí */}
-          <tr>
-            <td>2024-10-20</td>
-            <td>Juan Pérez</td>
-            <td>123456789</td>
-            <td>AB123</td>
-            <td>$500</td>
-          </tr>
-          <tr>
-            <td>2024-10-21</td>
-            <td>Ana Gómez</td>
-            <td>987654321</td>
-            <td>CD456</td>
-            <td>$1000</td>
-          </tr>
+          {winners.map((winner, index) => (
+            <tr key={index}>
+              <td>{new Date(winner.fechaHora).toLocaleString()}</td>
+              <td>{winner.userInfo.nombre}</td>
+              <td>{winner.userInfo.cedula}</td>
+              <td>{winner.userInfo.celular}</td>
+              <td>{winner.codigo}</td>
+              <td>{winner.premio}</td>
+               
+            </tr>
+          ))}
         </tbody>
       </table>
-      
-      {/* Botón de Salir */}
+
       <button className="btn-salir" onClick={handleSalir}>Salir</button>
     </div>
   );
