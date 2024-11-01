@@ -14,7 +14,7 @@ function Login() {
 
     try {
       // Realizar la solicitud de inicio de sesión al backend
-      const response = await axios.post('http://localhost:5000/api/user/login', {
+      const response = await axios.post('https://backend-juego.vercel.app/api/user/login', {
         correo,
         contraseña,
       });

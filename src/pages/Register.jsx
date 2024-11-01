@@ -28,7 +28,7 @@ function Register() {
     e.preventDefault(); // Prevenir el envío por defecto del formulario
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      const response = await fetch('https://backend-juego.vercel.app/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

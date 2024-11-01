@@ -33,7 +33,7 @@ function UserDashboard() {
     try {
       const token = localStorage.getItem('token'); // Obtiene el token desde almacenamiento local
       const response = await axios.post(
-        'http://localhost:5000/api/intento/intento',
+        'https://backend-juego.vercel.app/api/intento/intento',
         { fechaHora: new Date().toISOString(), codigo, premio },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -59,7 +59,7 @@ function UserDashboard() {
 
     if (codigo.length === 3 && /^\d{3}$/.test(codigo)) {
       try {
-        const response = await axios.get(`http://localhost:5000/api/codigo/${codigo}`);
+        const response = await axios.get(`https://backend-juego.vercel.app/api/codigo/${codigo}`);
         let premio = 'No ganaste';
 
         if (response.data.success) {

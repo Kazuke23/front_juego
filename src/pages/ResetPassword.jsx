@@ -10,7 +10,7 @@ function ResetPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
     try {
-      const response = await fetch('http://localhost:5000/api/user/reset-password', { // Asegúrate de que la URL sea correcta
+      const response = await fetch('https://backend-juego.vercel.app/api/user/reset-password', { // Asegúrate de que la URL sea correcta
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -11,7 +11,7 @@ function AdminDashboard() {
   useEffect(() => {
     const fetchWinners = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/intento/ganadores', {
+        const response = await fetch('https://backend-juego.vercel.app/api/intento/ganadores', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`, // Asegúrate de pasar el token de autenticación
           },
