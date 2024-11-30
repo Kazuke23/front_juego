@@ -1,102 +1,68 @@
-/* General Styles */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  margin: 0;
-}
-
-/* Header */
 .dashboard-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #202020;
-  color: #fff;
-  padding: 15px 30px;
+  padding: 10px;
+  background-color: #f3f3f3;
+  border-bottom: 2px solid #ccc;
 }
 
-.dashboard-header h1 {
-  margin: 0;
-  font-size: 24px;
-}
-
-.dashboard-header button {
-  background-color: #ff0000;
-  color: #fff;
+.nav-button {
+  padding: 10px 15px;
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 16px;
 }
 
-.dashboard-header button:hover {
-  background-color: #cc0000;
+.nav-button.blue {
+  background-color: #007bff;
+  color: #fff;
 }
 
-/* Main Section */
+.nav-button.red {
+  background-color: #ff4d4d;
+  color: #fff;
+}
+
+.search-input {
+  padding: 10px;
+  font-size: 16px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 .dashboard-main {
   padding: 20px;
 }
 
-.form-inline {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
 }
 
-.form-inline input {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  flex-grow: 1;
+.video-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.form-inline button {
-  background-color: #008cba;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.form-inline button:hover {
-  background-color: #005f8a;
-}
-
-/* Table */
-.table-container {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-table {
+video {
   width: 100%;
-  border-collapse: collapse;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
-thead {
-  background-color: #f1f1f1;
+h3 {
+  margin: 10px 0;
 }
 
-th, td {
-  text-align: left;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-th {
-  font-weight: bold;
-}
-
-tbody tr:hover {
-  background-color: #f9f9f9;
-}
-
-.nav-buttons {
-  display: flex;
-  gap: 10px;
+p {
+  color: #666;
+  margin: 5px 0;
 }
