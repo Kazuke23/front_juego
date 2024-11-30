@@ -56,7 +56,7 @@ body {
   }
   
   input:focus {
-    border-color: #ff416c;
+    border-color: #ff416c, #ff4b2b;;
     outline: none;
   }
   
@@ -73,7 +73,7 @@ body {
   }
   
   .reset-button:hover {
-    background-color: #ff416c;
+    background-color: #ff416c, #ff4b2b;;
     transform: translateY(-2px);
   }
   
@@ -83,7 +83,7 @@ body {
   }
   
   .reset-link a {
-    color: #ff416c;
+    color: #ff416c, #ff4b2b;;
     text-decoration: none;
   }
   

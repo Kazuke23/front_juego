@@ -62,14 +62,14 @@ input {
 }
 
 input:focus {
-  border-color: #007bff;
+  border-color: #ff416c, #ff4b2b;;
   outline: none;
 }
 
 button {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #ff416c, #ff4b2b;;
   color: white;
   border: none;
   border-radius: 8px;
@@ -79,7 +79,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #ff416c, #ff4b2b;;
   transform: translateY(-2px); /* Efecto de elevación al pasar el mouse */
 }
 
@@ -89,7 +89,7 @@ p {
 }
 
 a {
-  color: #007bff;
+  color: #ff416c, #ff4b2b;;
   text-decoration: none;
 }
 
