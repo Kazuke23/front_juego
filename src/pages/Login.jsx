@@ -45,7 +45,7 @@ function Login() {
 
   return (
     <div className="login-container">
-      <h2 className="login-title">Iniciar Sesión</h2>
+      <h2 className="login-title">Bienvenido a Reply</h2>
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Correo:</label>
