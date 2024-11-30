@@ -56,14 +56,14 @@ body {
   }
   
   input:focus {
-    border-color: #ff416c, #ff4b2b;;
+    border-color: #ff416c;
     outline: none;
   }
   
   .reset-button {
     width: 100%;
     padding: 10px; /* Reducción del padding del botón */
-    background-color: #ff416c, #ff4b2b;
+    background-color: #ff416c;
     color: white;
     border: none;
     border-radius: 8px;
@@ -73,7 +73,7 @@ body {
   }
   
   .reset-button:hover {
-    background-color: #ff416c, #ff4b2b;;
+    background-color: #ff416c;
     transform: translateY(-2px);
   }
   
@@ -83,7 +83,7 @@ body {
   }
   
   .reset-link a {
-    color: #ff416c, #ff4b2b;;
+    color: #ff416c;
     text-decoration: none;
   }
   
