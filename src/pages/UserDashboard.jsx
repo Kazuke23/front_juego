@@ -91,7 +91,11 @@ function UserDashboard() {
     <div className="dashboard-container">
       <header className="dashboard-header">
         <h1>Registro de Código</h1>
-        <button onClick={() => navigate('/')}>Salir</button>
+        <div className="nav-buttons">
+          <button onClick={() => navigate('/upload-video')}>Subir Video</button>
+          <button onClick={() => navigate('/profile')}>Mi Perfil</button>
+          <button onClick={() => navigate('/')}>Salir</button>
+        </div>
       </header>
 
       <main className="dashboard-main">
@@ -135,4 +139,3 @@ function UserDashboard() {
 }
 
 export default UserDashboard;
-  

@@ -95,3 +95,8 @@ th {
 tbody tr:hover {
   background-color: #f9f9f9;
 }
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
