@@ -1,21 +1,28 @@
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './styles/UserDashboard.css';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import './styles/UserDashboard.css'; // Puedes mantener los estilos originales
 
-function UserDashboard() {
+const UserDashboard = () => {
   const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
   const [codigo, setCodigo] = useState('');
   const [registros, setRegistros] = useState(() => {
     const savedRecords = localStorage.getItem('registros');
     return savedRecords ? JSON.parse(savedRecords) : [];
   });
+  const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Verificar el token al montar el componente
+  // Verificar token y cargar datos del usuario
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/'); // Redirige a la página de inicio si no hay token
+    const userName = localStorage.getItem('userName');
+    const userEmail = localStorage.getItem('userEmail');
+
+    if (!token || !userName || !userEmail) {
+      navigate('/'); // Redirigir si no hay sesión
+    } else {
+      setUserData({ nombre: userName, correo: userEmail });
     }
   }, [navigate]);
 
@@ -23,112 +30,121 @@ function UserDashboard() {
     localStorage.setItem('registros', JSON.stringify(registros));
   }, [registros]);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setIsSubmitting(true);
+
+    if (codigo.length !== 3 || !/^\d{3}$/.test(codigo)) {
+      setError('Por favor, ingresa un código válido de 3 dígitos.');
+      setIsSubmitting(false);
+      return;
+    }
+
+    const codigoYaRedimido = registros.some((registro) => registro.codigo === codigo);
+    if (codigoYaRedimido) {
+      setError('El código ya fue redimido.');
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(`https://backend-juego.vercel.app/api/codigo/${codigo}`);
+      const data = await response.json();
+
+      let premio = 'No ganaste';
+      if (data.success) {
+        premio = data.premio;
+      }
+
+      const nuevoRegistro = {
+        fechaHora: new Date().toLocaleString(),
+        codigo,
+        premio,
+      };
+
+      setRegistros((prevRegistros) => [...prevRegistros, nuevoRegistro]);
+      setCodigo('');
+    } catch (err) {
+      console.error('Error al registrar el código:', err);
+      setError('Hubo un problema al registrar el código. Inténtalo nuevamente.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const handleRefresh = () => {
     setRegistros([]);
     localStorage.removeItem('registros');
   };
 
-  // Función para guardar el intento
-  const guardarIntento = async (codigo, premio) => {
-    try {
-      const token = localStorage.getItem('token'); // Obtiene el token desde almacenamiento local
-      const response = await axios.post(
-        'https://backend-juego.vercel.app/api/intento/intento',
-        { fechaHora: new Date().toISOString(), codigo, premio },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-
-      if (!response.data.success) {
-        throw new Error(response.data.message);
-      }
-      return response.data;
-    } catch (error) {
-      console.error('Error al guardar el intento:', error.response?.data || error.message);
-      throw error;
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const codigoYaRedimido = registros.some((registro) => registro.codigo === codigo);
-    if (codigoYaRedimido) {
-      alert('El código ya fue redimido.');
-      return;
-    }
-
-    if (codigo.length === 3 && /^\d{3}$/.test(codigo)) {
-      try {
-        const response = await axios.get(`https://backend-juego.vercel.app/api/codigo/${codigo}`);
-        let premio = 'No ganaste';
-
-        if (response.data.success) {
-          premio = response.data.premio;
-        }
-
-        await guardarIntento(codigo, premio);
-
-        const nuevoRegistro = {
-          fechaHora: new Date().toLocaleString(),
-          codigo,
-          premio,
-        };
-
-        setRegistros((prevRegistros) => [...prevRegistros, nuevoRegistro]);
-        setCodigo('');
-      } catch (error) {
-        console.error('Error:', error);
-        if (error.response) {
-          alert(`Error: ${error.response.data.message || 'Error al procesar la solicitud'}`);
-        } else {
-          alert('Error de conexión con el servidor');
-        }
-      }
-    } else {
-      alert('Por favor, ingresa un código de 3 dígitos.');
-    }
+  const handleGoToDashboardMain = () => {
+    navigate('/dashboard-main');
   };
 
   return (
     <div className="dashboard-container">
-      <h1>Registro de Código</h1>
-      <form onSubmit={handleSubmit} className="form-inline">
-        <input
-          type="text"
-          value={codigo}
-          onChange={(e) => setCodigo(e.target.value)}
-          placeholder="Ingrese código (000 - 999)"
-          maxLength="3"
-          pattern="\d{3}"
-          required
-        />
-        <button type="submit">Registrar</button>
-        <button type="button" onClick={() => navigate('/')}>Salir</button>
-        <button type="button" onClick={handleRefresh}>Refrescar</button>
-      </form>
-      
-      <div className="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Fecha y Hora</th>
-              <th>Código</th>
-              <th>Premio</th>
-            </tr>
-          </thead>
-          <tbody>
-            {registros.map((registro, index) => (
-              <tr key={index}>
-                <td>{registro.fechaHora}</td>
-                <td>{registro.codigo}</td>
-                <td>{registro.premio}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {userData && (
+        <>
+          <div className="dashboard-header">
+            <p>Bienvenido, {userData.nombre}</p>
+            <p>{userData.correo}</p>
+          </div>
+
+          <div className="dashboard-content">
+            <form onSubmit={handleSubmit} className="dashboard-form">
+              <div className="input-group">
+                <label htmlFor="codigo">Código:</label>
+                <input
+                  type="text"
+                  id="codigo"
+                  value={codigo}
+                  onChange={(e) => setCodigo(e.target.value)}
+                  placeholder="Ingrese código (000 - 999)"
+                  maxLength="3"
+                  pattern="\d{3}"
+                  required
+                />
+              </div>
+
+              {error && <div className="error-message">{error}</div>}
+
+              <button type="submit" className="submit-button" disabled={isSubmitting}>
+                {isSubmitting ? 'Registrando...' : 'Registrar'}
+              </button>
+              <button type="button" onClick={handleRefresh} className="refresh-button">
+                Refrescar
+              </button>
+              <button type="button" onClick={handleGoToDashboardMain} className="go-to-login-button">
+                Volver al dashboard principal
+              </button>
+            </form>
+
+            <div className="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Fecha y Hora</th>
+                    <th>Código</th>
+                    <th>Premio</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {registros.map((registro, index) => (
+                    <tr key={index}>
+                      <td>{registro.fechaHora}</td>
+                      <td>{registro.codigo}</td>
+                      <td>{registro.premio}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
-}
+};
 
 export default UserDashboard;
